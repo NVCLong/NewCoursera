@@ -1,0 +1,21 @@
+.test {
+  font-size: 1rem;
+  background-color: red;
+  font-family: Algerian, serif; }
+
+.container {
+  display: flex;
+  justify-content: center; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: black;
+  height: fit-content; }
+
+.icons {
+  height: 50px; }
+
+.card-course-item {
+  margin-top: 12px; }
