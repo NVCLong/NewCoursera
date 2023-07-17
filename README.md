@@ -1,8 +1,5 @@
 # Coursera
 
-# My Spotify
-
-
 This is a small website developed by using Node.Js/ Express.Js ,HTML5, CSS3, and Boostrap5. This website support for learning purpose, and practice Node.Js and Express.Js
 
 
