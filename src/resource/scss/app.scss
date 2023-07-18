@@ -22,3 +22,32 @@ footer {
 .card-course-item{
   margin-top: 12px;
 }
+.card-img-top:hover{
+ transform: scale(1.1);
+}
+.card-img-top{
+  height: 180px;
+  width: 347px;
+}
+.description{
+
+}
+
+.hero-section{
+  width: 100%;
+  height: calc(120vh - 120px);
+  background-image: url("https://realprogramming.com/wp-content/uploads/2021/02/online-coding-classes.jpg?is-pending-load=1");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-section .sub-heading{
+  margin-top: 80px;
+  text-align: center;
+  color: black ;
+  font-family: "Bookman Old Style", cursive ;
+  text-transform: capitalize;
+  font-size: 35px;
+  font-weight: 300;
+}

@@ -14,5 +14,16 @@ class CoursesController {
                 res.status(400).json("error "+ req.params.slug)
             }
     }
+    async courses(req, res){
+            try {
+                const data=await Course.find()
+                    .then((courses)=>{
+                        courses=until.multipleMongooseToObject(courses)
+                        res.render('courses',{courses: courses})
+                    })
+            }catch (e){
+                res.status(400).json("error")
+            }
+    }
 }
 module.exports = new CoursesController();
