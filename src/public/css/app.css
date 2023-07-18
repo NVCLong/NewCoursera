@@ -27,9 +27,14 @@ footer {
   height: 180px;
   width: 347px; }
 
+.hero-section .logo {
+  height: 150px;
+  display: block;
+  margin: auto; }
+
 .hero-section {
   width: 100%;
-  height: calc(120vh - 120px);
+  height: calc(140vh - 120px);
   background-image: url("https://realprogramming.com/wp-content/uploads/2021/02/online-coding-classes.jpg?is-pending-load=1");
   background-size: cover;
   display: flex;
@@ -44,3 +49,10 @@ footer {
   text-transform: capitalize;
   font-size: 35px;
   font-weight: 300; }
+
+.card-text {
+  line-height: 20px;
+  overflow: hidden;
+  opacity: 0.5;
+  height: 40px;
+  text-transform: capitalize; }
