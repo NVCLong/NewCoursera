@@ -1,12 +1,14 @@
-<div class="mt-4">
-    <div class="row">
-        <div class="col-lg-3">
-            <button>Study now</button>
-        </div>
-        <div class="col-lg-9">
-            <h2>{{courses.name}}</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/{{courses.vidId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            <p class="description">{{courses.description}}</p>
+<main>
+    <div class="pelicula-principal">
+        <div class="contenedor">
+            <h3 class="titulo">{{courses.name}}</h3>
+            <p class="descripcion">
+               {{courses.description}}
+            </p>
+            <button role="button" class="boton"><i class="fas fa-play"></i>Study Now</button>
         </div>
     </div>
-</div>
+    <div class="video">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{courses.vidId}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</main>

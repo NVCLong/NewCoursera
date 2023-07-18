@@ -6,7 +6,6 @@
 }
 .container {
   display: flex;
-
   justify-content: center;
 }
 footer {
@@ -16,21 +15,18 @@ footer {
   background-color: black;
   height: fit-content;
 }
-.icons{
-  height: 50px;
-}
 .card-course-item{
   margin-top: 12px;
 }
 .card-img-top:hover{
- transform: scale(1.1);
+ transform: scale(1.05);
 }
 .card-img-top{
-  height: 180px;
-  width: 347px;
+  height: 160px;
+  width: 100%;
 }
-.description{
-
+.app{
+  justify-content: center;
 }
 
 .hero-section .logo{
@@ -61,6 +57,62 @@ footer {
   overflow: hidden;
   opacity: 0.5;
   height: 40px;
-  text-transform: capitalize;
+}
+.pelicula-principal {
+  font-size: 16px;
+  min-height: 40.62em;
+  color: #ffffff;
+  background-color: gray;
+  background-position: center center;
+  background-size: cover;
+  margin-bottom: 3.12em;
+  display: flex;
+  align-items: end;
+}
 
+.pelicula-principal .contenedor {
+  position: absolute;
+  bottom: 30px;
+  left:12px;
+
+}
+
+.pelicula-principal .titulo {
+  font-weight: 600;
+  font-size: 3.12em;
+  margin-bottom: 0.4em;
+}
+
+.pelicula-principal .descripcion {
+  font-weight: normal;
+  font-size: 1em;
+  line-height: 1.75em;
+  max-width: 50%;
+  margin-bottom: 1.25em;
+}
+
+.pelicula-principal .boton {
+  background: rgba(0,0,0, 0.5);
+  border: none;
+  border-radius: 0.31em;
+  padding: 0.93em 1.87em;
+  color: #fff;
+  margin-right: 1.25em;
+  cursor: pointer;
+  transition: .3s ease all;
+  font-size: 1.12em;
+}
+
+.pelicula-principal .boton:hover {
+  background: #fff;
+  color: #000;
+}
+
+.pelicula-principal .boton i {
+  margin-right: 1.25em;
+}
+.video{
+  position: absolute;
+  top: 100px;
+  left: 12px;
 }
