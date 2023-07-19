@@ -9,6 +9,9 @@ const port = 3000;
 db.connect().then(function (){
   console.log("Success")
 })
+db.handleConnect().then(function () {
+  console.log("Success connect to news")
+})
 
 const route = require('./routes/index');
 app.use(morgan('combined'));

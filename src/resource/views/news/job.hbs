@@ -1,0 +1,21 @@
+<div class="body">
+<div class="head">
+
+    <div class="subhead">Tech news</div>
+</div>
+<div class="content">
+    <div class="collumns">
+        {{#each news}}
+        <div class="collumn">
+            <div class="head"><span class="headline hl5">Hot news</span><p><span class="headline hl6">{{this.title}}</span></p></div>
+            {{this.body}}
+            <figure class="figure">
+                <img class="media" src="{{this.image}}" alt="">
+                <figcaption class="figcaption">{{this.author}}</figcaption>
+            </figure>
+        </div>
+        {{/each}}each}}
+
+</div>
+</div>
+</div>
