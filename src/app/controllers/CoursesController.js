@@ -25,5 +25,18 @@ class CoursesController {
                 res.status(400).json("error")
             }
     }
+    async create(req,res){
+        res.render('courses/createForm')
+    }
+
+    async store(req,res){
+        // res.json(req.body)
+        const newCourse= new Course(req.body)
+        await newCourse.save()
+            .then(function () {
+                res.redirect('http://localhost:3000/courses')
+            })
+
+    }
 }
 module.exports = new CoursesController();
