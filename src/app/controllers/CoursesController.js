@@ -30,12 +30,16 @@ class CoursesController {
     }
 
     async store(req,res){
-        // res.json(req.body)
-        const newCourse= new Course(req.body)
-        await newCourse.save()
-            .then(function () {
-                res.redirect('http://localhost:3000/courses')
-            })
+        try {
+            // res.json(req.body)
+            const newCourse = new Course(req.body)
+            await newCourse.save()
+                .then(function () {
+                    res.redirect('http://localhost:3000/courses')
+                })
+        }catch (e){
+            res.status(400).json(e)
+        }
 
     }
 }

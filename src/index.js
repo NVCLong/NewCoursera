@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
+const route = require('./routes/index');
 const db= require('./config/db')
 const app = express();
 const port = 3000;
@@ -13,7 +14,7 @@ db.handleConnect().then(function () {
   console.log("Success connect to news")
 })
 
-const route = require('./routes/index');
+
 app.use(morgan('combined'));
 
 // use Static file like css, or image
