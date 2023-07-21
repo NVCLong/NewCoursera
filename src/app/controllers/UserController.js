@@ -4,13 +4,41 @@ const bcrypt=require('bcrypt')
 const {hash} = require("bcrypt");
 
 class UserController{
+
+    loginForm(req,res){
+        res.render('authentication/login')
+    }
     async login(req,res){
+        try{
+            const user= await User.findOne({username:req.body.username})
+            if(!user){
+                res.status(404).json("error")
+            }
+
+            // Verify password
+            const validPassword= await bcrypt.compare(
+                req.body.password,
+                user.password
+            )
+            if(!validPassword){
+                res.status(404).json("wrong password")
+            }
+            if(user && validPassword){
+                res.status(200).render('home')
+            }
+
+        }catch (e){
+            res.status(400).json(e)
+        }
+    }
+
+    registerForm(req, res){
+        res.render('authentication/register')
 
     }
 
     async register(req,res){
         try{
-
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.password, salt);
 

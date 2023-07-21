@@ -492,3 +492,9 @@ body {
     bottom: -100%; }
   50%, 100% {
     bottom: 100%; } }
+
+.register-wrap {
+  display: flex; }
+
+.text-register {
+  color: white; }
