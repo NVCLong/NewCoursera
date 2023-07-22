@@ -2,6 +2,7 @@ const User= require('../modle/User')
 const until=require('../../until/Mongoose')
 const bcrypt=require('bcrypt')
 const {hash} = require("bcrypt");
+const jwt=require('jsonwebtoken')
 
 class UserController{
 
@@ -24,6 +25,26 @@ class UserController{
                 res.status(404).json("wrong password")
             }
             if(user && validPassword){
+               const accessToken= jwt.sign({
+                   id: user.id,
+                   admin: user.admin
+               }, 'secret', { expiresIn: "30s" });
+                const refreshToken=jwt.sign({
+                    id:user.id
+                }, 'secret',{expiresIn: "30d"})
+
+                // store refresh token into cookies
+                res.cookie("refreshToken",refreshToken,{
+                    httpOnly:true,
+                    sameSite: "strict",
+                    secure:false,
+                })
+                res.cookie("accessToken",accessToken,{
+                    httpOnly:true,
+                    sameSite:"strict",
+                    secure:false
+                })
+                 // res.status(200).json(accessToken)
                 res.status(200).render('home')
             }
 

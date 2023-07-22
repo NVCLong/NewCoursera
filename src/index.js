@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const route = require('./routes/index');
+const cookieParser = require("cookie-parser");
 const db= require('./config/db')
 const app = express();
 const port = 3000;
@@ -16,6 +17,9 @@ db.handleConnect().then(function () {
 
 
 app.use(morgan('combined'));
+
+//cookies set/get value
+app.use(cookieParser())
 
 // use Static file like css, or image
 app.use(express.static(path.join(__dirname, 'public')));
