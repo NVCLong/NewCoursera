@@ -10,14 +10,14 @@ const middlewareController={
         if(token){
             jwt.verify(token,'secret',(e,user)=>{
                 if(e){
-                    res.status(403).json("token is not valid")
+                    res.status(404).json("token is not valid")
                 }
                 req.user=user
                 next()
             })
         }
         else {
-            res.status(401).json("you are not authenticated")
+            res.status(404).json("you are not authenticated")
         }
     }
 }
