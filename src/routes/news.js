@@ -6,5 +6,7 @@ const middlewareController = require('../app/controllers/MildewareController');
 
 router.get('/tech', middlewareController.verifyToken, newController.tech);
 router.get('/job', middlewareController.verifyToken, newController.job);
+router.get('/', middlewareController.verifyToken);
+
 
 module.exports = router;

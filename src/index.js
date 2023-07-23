@@ -5,6 +5,7 @@ const path = require('path');
 const route = require('./routes/index');
 const cookieParser = require("cookie-parser");
 const db= require('./config/db')
+var methodOverride = require('method-override')
 const app = express();
 const port = 3000;
 
@@ -27,11 +28,20 @@ app.use(express.urlencoded());
 app.use(express.json());
 
 // Template engine
-app.engine('hbs', handlebars.engine({ extname: 'hbs' }));
+app.engine('hbs', handlebars.engine({
+  extname: 'hbs',
+  helpers: {
+    sum: (a, b) => a + b
+  }
+}));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resource','views'));
 
 console.log('Path: ' + path.join(__dirname, 'resource','views'));
+
+
+//method overide
+app.use(methodOverride('_method'))
 
 route(app);
 

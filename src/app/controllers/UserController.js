@@ -3,9 +3,10 @@ const until=require('../../until/Mongoose')
 const bcrypt=require('bcrypt')
 const {hash} = require("bcrypt");
 const jwt=require('jsonwebtoken')
+const ls = require('local-storage');
+
 
 class UserController{
-
     loginForm(req,res){
         res.render('authentication/login')
     }
@@ -28,7 +29,7 @@ class UserController{
                const accessToken= jwt.sign({
                    id: user.id,
                    admin: user.admin
-               }, 'secret', { expiresIn: "30s" });
+               }, 'secret', { expiresIn: 60*60 });
                 const refreshToken=jwt.sign({
                     id:user.id
                 }, 'secret',{expiresIn: "30d"})
@@ -44,8 +45,8 @@ class UserController{
                     sameSite:"strict",
                     secure:false
                 })
-                 // res.status(200).json(accessToken)
-                res.status(200).render('home')
+                  // res.status(200).json(localStorage.getItem('username'))
+                res.status(200).redirect('/')
             }
 
         }catch (e){

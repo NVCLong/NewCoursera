@@ -1,21 +1,21 @@
 
 <div class="login-box">
-    <h2>Coursera</h2>
-    <form method="post" action="/courses/store">
+    <h2>Edit Coursera</h2>
+    <form method="post" action="/courses/{{courses._id}}?_method=PUT">
         <div class="user-box">
-            <input type="text" name="name" required="">
+            <input type="text" name="name" value="{{courses.name}}" required="">
             <label>Course name</label>
         </div>
         <div class="user-box">
-            <input type="text" name="description" required="">
+            <input type="text" name="description" value="{{courses.description}}" required="">
             <label>Course description</label>
         </div>
         <div class="user-box">
-            <input type="text" name="image" required="">
+            <input type="text" name="image" value="{{courses.image}}" required="">
             <label>Course image link</label>
         </div>
         <div class="user-box">
-            <input type="text" name="vidId" required="">
+            <input type="text" name="vidId" value="{{courses.vidId}}" required="">
             <label>Course video id</label>
         </div>
         <button type="submit" >
@@ -23,7 +23,7 @@
             <span></span>
             <span></span>
             <span></span>
-            Submit
+            Edit
         </button>
     </form>
 </div>

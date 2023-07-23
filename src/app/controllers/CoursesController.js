@@ -42,5 +42,34 @@ class CoursesController {
         }
 
     }
+    async edit(req,res){
+        try {
+                await Course.findById(req.params.id)
+                .then((courses)=>{
+                    courses=until.mongooseToObject(courses)
+                    res.render('courses/edit',{courses: courses})
+                })
+        }catch (e){
+            res.status(400).send(e)
+        }
+
+    }
+
+    //[PUT]  /courses/:id
+    async update(req,res){
+        try{
+            //update using Course.updateOne( condition, changes)
+            await Course.updateOne({_id:req.params.id},req.body)
+                .then(function (){
+                    res.redirect('/me/stored/courses')
+                })
+                .catch(function (reason) {
+                    res.status(401).json(reason)
+                })
+
+        }catch(e){
+            res.status(401).json(e)
+        }
+    }
 }
 module.exports = new CoursesController();

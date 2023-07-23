@@ -6,8 +6,10 @@ const {static} = require("express");
 
 router.get('/create',middlewareController.verifyToken,coursesController.create)
 router.post('/store',middlewareController.verifyToken,coursesController.store)
-router.get('/:slug',middlewareController.verifyToken, coursesController.show);
-router.get('/',middlewareController.verifyToken,coursesController.courses)
+router.get('/:slug',middlewareController.verifyToken, coursesController.show)
+router.get('/:id/edit',middlewareController.verifyToken,coursesController.edit)
+router.put('/:id',middlewareController.verifyToken,coursesController.update)
+router.get('/', middlewareController.verifyToken,coursesController.courses)
 
 
 module.exports = router;
