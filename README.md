@@ -51,13 +51,13 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  npm install  bcrypt cookie-parser express express-handlebars jsonwebtoken method-override mongoose morgan node-localstorage node-sass nodemon
 ```
 
 Start the server
 
 ```bash
-  npm run start
+  npm start
 ```
 
 
