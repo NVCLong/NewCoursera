@@ -71,5 +71,19 @@ class CoursesController {
             res.status(401).json(e)
         }
     }
+    async delete(req,res){
+        try{
+            await Course.deleteOne({_id:req.params.id})
+                .then(function () {
+                    res.redirect('back')
+                })
+                .catch(function (reason) {
+                    res.json(reason)
+                })
+
+        }catch (e) {
+            res.status(401).json(e)
+        }
+    }
 }
 module.exports = new CoursesController();
