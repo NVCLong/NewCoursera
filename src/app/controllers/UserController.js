@@ -72,10 +72,19 @@ class UserController{
             })
             // save to database
             await newUser.save()
-            res.status(200).json(newUser)
+            res.status(200).redirect('/authen')
 
         }catch (e){
             res.status(400).json("error"+ e)
+        }
+    }
+
+    async userLogout(req,res){
+        try{
+            res.clearCookie("accessToken")
+            res.redirect('/')
+        }catch (e) {
+            res.json(e)
         }
     }
 }
