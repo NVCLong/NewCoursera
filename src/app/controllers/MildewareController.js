@@ -10,14 +10,14 @@ const middlewareController={
         if(token){
             jwt.verify(token,'secret',(e,user)=>{
                 if(e){
-                    res.redirect('../authen')
+                    res.redirect('/authen')
                 }
                 req.user=user
                 next()
             })
         }
         else {
-            res.redirect('../authen')
+            res.redirect('/authen')
         }
     }
 }

@@ -1,0 +1,26 @@
+
+<div class="login-box">
+    <h2>Edit Coursera</h2>
+    <form method="post" action="/news/{{news._id}}?_method=PUT">
+        <div class="user-box">
+            <input type="text" name="title" value="{{news.title}}" required="">
+            <label>Title</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="body" value="{{news.body}}" required="">
+            <label>Content</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="author" value="{{news.author}}" required="">
+            <label>Author</label>
+        </div>
+
+        <button type="submit" >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Edit
+        </button>
+    </form>
+</div>
