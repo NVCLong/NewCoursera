@@ -32,7 +32,13 @@ class CoursesController {
     async store(req,res){
         try {
             // res.json(req.body)
-            const newCourse = new Course(req.body)
+            const newCourse = new Course({
+                name: req.body.name,
+                description: req.body.description,
+                image: req.body.image,
+                vidId: req.body.vidId,
+                userupload:true,
+            })
             await newCourse.save()
                 .then(function () {
                     res.redirect('http://localhost:3000/courses')

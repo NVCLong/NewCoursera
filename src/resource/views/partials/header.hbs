@@ -28,9 +28,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/courses/create">Create Courses</a>
+                    <a class="dropdown-item" href="/news/create">New Article</a>
                     <a class="dropdown-item" href="/me/stored/courses">My courses</a>
                     <a class="dropdown-item" href="/news/my_news">My news</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete-news"   >Log out</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout"   >Log out</a>
                     <div class="dropdown-divider"></div>
                 </div>
             </li>
@@ -42,7 +43,7 @@
     </div>
 </nav>
 
-<div class="modal fade" id="delete-news" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -70,4 +71,6 @@
         logoutForm.action='/authen/logout?_method=POST'
         logoutForm.submit()
     }
-</script>
+
+
+</script> 87

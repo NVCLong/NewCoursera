@@ -10,6 +10,7 @@ const Course = new Schema({
     description: {type: String, minLength: 1, maxLength: 600},
     image: {type: String, minLength: 1, maxLength: 200},
     vidId: {type: String, minLength: 1, maxLength: 200},
+    userupload:{type:Boolean, default:false},
     slug: {type: String, maxLength:200},
 },{
     timestamps:true

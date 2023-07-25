@@ -8,7 +8,7 @@ class NewController {
     try{
       await News.find()
           .then(function (news){
-            res.render('news/job',{news:until.multipleMongooseToObject(news)})
+            res.render('news/tech',{news:until.multipleMongooseToObject(news)})
           })
 
     }catch(e){
@@ -26,21 +26,48 @@ class NewController {
           })
 
     }catch(e) {
-      res.status(400).json(error)
+      res.status(400).json("error")
     }
   }
 
-  //[GET] /news/mynews
+  //[GET] /news/create
+    async create(req,res){
+      try{
+          res.render('news/create')
+      }catch (e) {
+          res.status(401).json(e)
+      }
+    }
+
+  // [POST] /news/store
+  async store(req,res){
+      try{
+          const newArticle= new News({
+              title: req.body.title,
+              body: req.body.body,
+              image:req.body.image,
+              author:req.body.author,
+              userupload:true
+          })
+          newArticle.save()
+              .then(function () {
+                  res.redirect('/news/job')
+              })
+      }catch (e) {
+          res.status(401).json(e)
+      }
+  }
+
+  //[GET] /news/my_news
   async show(req,res){
       try{
-          News.find()
+          News.find({userupload:'true'})
               .then(function (news) {
                   res.render('news/news',{news:until.multipleMongooseToObject(news)})
               })
       }catch(e){
           res.status(404).json(e)
       }
-
   }
 
   //[GET] /news/:id/edit
