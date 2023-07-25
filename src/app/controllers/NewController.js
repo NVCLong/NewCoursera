@@ -1,5 +1,6 @@
 
 const News=require('../modle/News')
+const Jobs=require('../modle/Jobs')
 const until=require('../../until/Mongoose')
 
 class NewController {
@@ -20,7 +21,7 @@ class NewController {
 
   async job(req, res) {
     try{
-      await News.find()
+      await Jobs.find()
           .then(function (news){
             res.render('news/job',{news:until.multipleMongooseToObject(news)})
           })
@@ -112,5 +113,20 @@ class NewController {
           res.status(401).json(e)
       }
   }
+
+  //[GET] /news/jobs/:slug
+    async details(req,res){
+      try{
+          await Jobs.findOne({slug:req.params.slug})
+              .then(function (job) {
+                  res.render('news/detail',{job:until.mongooseToObject(job)})
+              })
+              .catch(function (reason) {
+                  res.status(404).json(e)
+              })
+      }catch (e) {
+          res.status(401).json(e)
+      }
+    }
 }
 module.exports = new NewController();

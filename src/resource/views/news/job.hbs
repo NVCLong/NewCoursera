@@ -1,21 +1,18 @@
-<div class="body">
-<div class="head">
 
-    <div class="subhead">Tech news</div>
-</div>
-<div class="content">
-    <div class="collumns">
-        {{#each news}}
-        <div class="collumn">
-            <div class="head"><span class="headline hl5">Hot news</span><p><span class="headline hl6">{{this.title}}</span></p></div>
-            {{this.body}}
-            <figure class="figure">
-                <img class="media" src="{{this.image}}" alt="">
-                <figcaption class="figcaption">{{this.author}}</figcaption>
-            </figure>
+    <div class="mt-4">
+        <div class="row">
+            {{#each news}}
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card card-course-item" >
+                        <div class="card-body">
+                            <a href="/news/job/{{this.slug}}">
+                                <h5 class="card-title">{{this.name}}</h5>
+                            </a>
+                            <p class="card-text">{{this.description}}</p>
+                            <a href="/news/job/{{this.slug}}" class="btn btn-primary">Details</a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
         </div>
-        {{/each}}each}}
-
-</div>
-</div>
-</div>
+    </div>
