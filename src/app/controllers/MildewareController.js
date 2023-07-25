@@ -1,26 +1,23 @@
+const jwt = require('jsonwebtoken');
 
-const jwt=require('jsonwebtoken')
-
-
-const middlewareController={
-    // verify
-    verifyToken(req, res,next){
-        const token = req.cookies.accessToken
-        console.log(token)
-        if(token){
-            jwt.verify(token,'secret',(e,user)=>{
-                if(e){
-                    res.redirect('/authen')
-                }
-                req.user=user
-                next()
-            })
+const middlewareController = {
+  // verify
+  verifyToken(req, res, next) {
+    const token = req.cookies.accessToken;
+    console.log(token);
+    if (token) {
+      jwt.verify(token, 'secret', (e, user) => {
+        if (e) {
+          res.redirect('/authen');
         }
-        else {
-            res.redirect('/authen')
-        }
+        req.user = user;
+        next();
+      });
+    } else {
+      res.redirect('/authen');
     }
-}
+  },
+};
 
 // store token
 //1. Local storage
@@ -31,4 +28,4 @@ const middlewareController={
 // 3. Redux store to store access token
 //    http cookies to store refresh token
 
-module.exports=middlewareController
+module.exports = middlewareController;

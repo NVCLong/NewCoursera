@@ -17,6 +17,9 @@ footer {
 .card-course-item {
   margin-top: 12px; }
 
+.mt-4 {
+  margin: 10px; }
+
 .card-img-top:hover {
   transform: scale(1.05); }
 
@@ -45,7 +48,7 @@ footer {
   margin-top: 80px;
   text-align: center;
   color: black;
-  font-family: "Bookman Old Style", cursive;
+  font-family: 'Bookman Old Style', cursive;
   text-transform: capitalize;
   font-size: 35px;
   font-weight: 300; }
@@ -92,7 +95,7 @@ footer {
   color: #fff;
   margin-right: 1.25em;
   cursor: pointer;
-  transition: .3s ease all;
+  transition: 0.3s ease all;
   font-size: 1.12em; }
 
 .pelicula-principal .boton:hover {
@@ -150,7 +153,7 @@ p {
 .content {
   font-size: 0;
   line-height: 0;
-  word-spacing: -.31em;
+  word-spacing: -0.31em;
   display: inline-block;
   margin: 30px 2% 0 2%; }
 
@@ -162,7 +165,7 @@ p {
   padding: 0 1% 0 1%;
   vertical-align: top;
   margin-bottom: 50px;
-  transition: all .7s; }
+  transition: all 0.7s; }
 
 .collumn + .collumn {
   border-left: 1px solid #2f2f2f; }
@@ -296,7 +299,7 @@ p {
   font-weight: 400;
   display: block;
   margin: 40px 0 40px 0;
-  font-feature-settings: "liga", "dlig"; }
+  font-feature-settings: 'liga', 'dlig'; }
 
 .collumn .citation:before {
   border-top: 1px solid #2f2f2f;
@@ -402,7 +405,7 @@ body {
   font-size: 16px;
   color: #fff;
   pointer-events: none;
-  transition: .5s; }
+  transition: 0.5s; }
 
 .login-box .user-box input:focus ~ label,
 .login-box .user-box input:valid ~ label {
@@ -420,7 +423,7 @@ body {
   text-decoration: none;
   text-transform: uppercase;
   overflow: hidden;
-  transition: .5s;
+  transition: 0.5s;
   margin-top: 40px;
   letter-spacing: 4px; }
 
@@ -445,7 +448,8 @@ body {
 @keyframes btn-anim1 {
   0% {
     left: -100%; }
-  50%, 100% {
+  50%,
+  100% {
     left: 100%; } }
 
 .login-box a span:nth-child(2) {
@@ -455,12 +459,13 @@ body {
   height: 100%;
   background: linear-gradient(180deg, transparent, #03e9f4);
   animation: btn-anim2 1s linear infinite;
-  animation-delay: .25s; }
+  animation-delay: 0.25s; }
 
 @keyframes btn-anim2 {
   0% {
     top: -100%; }
-  50%, 100% {
+  50%,
+  100% {
     top: 100%; } }
 
 .login-box button span:nth-child(3) {
@@ -470,12 +475,13 @@ body {
   height: 2px;
   background: linear-gradient(270deg, transparent, #03e9f4);
   animation: btn-anim3 1s linear infinite;
-  animation-delay: .5s; }
+  animation-delay: 0.5s; }
 
 @keyframes btn-anim3 {
   0% {
     right: -100%; }
-  50%, 100% {
+  50%,
+  100% {
     right: 100%; } }
 
 .login-box a span:nth-child(4) {
@@ -485,12 +491,13 @@ body {
   height: 100%;
   background: linear-gradient(360deg, transparent, #03e9f4);
   animation: btn-anim4 1s linear infinite;
-  animation-delay: .75s; }
+  animation-delay: 0.75s; }
 
 @keyframes btn-anim4 {
   0% {
     bottom: -100%; }
-  50%, 100% {
+  50%,
+  100% {
     bottom: 100%; } }
 
 .register-wrap {
@@ -498,3 +505,10 @@ body {
 
 .text-register {
   color: white; }
+
+.listgroup {
+  width: 50%;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: gray; }
