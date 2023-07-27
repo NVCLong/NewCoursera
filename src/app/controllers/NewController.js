@@ -12,7 +12,6 @@ class NewController {
     } catch (e) {
       res.status(400).json('error');
     }
-    res.render('news/tech');
   }
   // [GET} /news/:slug
 
