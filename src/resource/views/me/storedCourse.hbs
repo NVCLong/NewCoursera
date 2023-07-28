@@ -3,26 +3,28 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col">Index</th>
             <th scope="col">Courses Name</th>
             <th scope="col">Vid Id</th>
-            <th scope="col">Created Time</th>
+            <th scope="col">Slug</th>
             <th scope="col"></th>
         </tr>
         </thead>
     {{#each course}}
+        {{#each this.products}}
         <tbody>
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td><a href="/courses/{{this.slug}}" style="color: #f9f7f1">{{this.name}}</a></td>
                 <td>{{this.vidId}}</td>
-                <td>{{this.createdAt}}</td>
+                <td>{{this.slug}}</td>
                 <td>
                     <a href="/courses/{{this._id}}/edit" class="btn btn-link">Edit</a>
                     <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course">Delete</a>
                 </td>
             </tr>
         </tbody>
+        {{/each}}
     {{/each}}
     </table>
 </div>

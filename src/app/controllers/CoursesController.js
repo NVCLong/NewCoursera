@@ -1,5 +1,6 @@
 const Course = require('../modle/Course');
 const until = require('../../until/Mongoose');
+const Cart= require("../modle/Cart")
 
 class CoursesController {
   // [GET} /courses/:slug
@@ -85,6 +86,54 @@ class CoursesController {
         });
     } catch (e) {
       res.status(401).json(e);
+    }
+  }
+
+  //[GET] /courses/:id
+  async addToCart(req,res){
+    try{
+      await Course.findById(req.params.id)
+          .then(async function (course) {
+            const addCourse = {
+              name: course.name,
+              vidId: course.vidId,
+              slug: course.slug
+            }
+            const userId = req.cookies.userId
+            try {
+              let cart = await Cart.findOne({userId: userId});
+
+              if (cart) {
+                //cart exists for user
+                let itemIndex = cart.products.findIndex(function (course) {
+                  return course.slug === addCourse.slug
+                });
+
+                if (itemIndex > -1) {
+                  //product exists in the cart, update the quantity
+                  res.json("already exist")
+                } else {
+                  //product does not exist in cart, add new item
+                  cart.products.push(addCourse);
+                }
+                cart = cart.save();
+                 res.status(200).redirect('/');
+              } else {
+                //no cart for user, create new cart
+                const newCart = Cart.create({
+                  userId,
+                  products: [addCourse]
+                });
+
+                 res.status(200).redirect('/me/stored/courses');
+              }
+            } catch (err) {
+              console.log(err);
+              res.status(500).json("error : " + err);
+            }
+          })
+    }catch (e) {
+      res.json( e)
     }
   }
 

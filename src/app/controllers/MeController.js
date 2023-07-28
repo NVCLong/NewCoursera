@@ -1,18 +1,18 @@
 const Course = require('../modle/Course');
 const until = require('../../until/Mongoose');
-
+const Cart=require('../modle/Cart')
 const MeController = {
-  //[GET] /me/stored/courses
-  async stored(req, res) {
-    await Course.find({ userupload: true })
-      .then(function (courses) {
-        res.render('me/storedCourse', {
-          course: until.multipleMongooseToObject(courses),
-        });
-      })
-      .catch(function (e) {
-        console.log(e);
-      });
-  },
+    //[GET] /me/stored/courses
+    async stored(req, res) {
+        await Cart.find()
+            .then(function (courses) {
+                res.render('me/storedCourse', {
+                    course: until.multipleMongooseToObject(courses),
+                });
+            })
+            .catch(function (e) {
+                console.log(e);
+            });
+    },
 };
 module.exports = MeController;

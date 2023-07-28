@@ -40,7 +40,8 @@ class UserController {
           'secret',
           { expiresIn: '30d' },
         );
-
+        //store userid to cookie
+        res.cookie('userId',user.id)
         // store refresh token into cookies
         res.cookie('refreshToken', refreshToken, {
           httpOnly: true,

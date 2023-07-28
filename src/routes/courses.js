@@ -26,6 +26,7 @@ router.delete(
   middlewareController.verifyToken,
   coursesController.delete,
 );
+router.get('/stored/:id',middlewareController.verifyToken,coursesController.addToCart)
 router.get('/', middlewareController.verifyToken, coursesController.courses);
 
 module.exports = router;
