@@ -117,7 +117,7 @@ class CoursesController {
                   cart.products.push(addCourse);
                 }
                 cart = cart.save();
-                 res.status(200).redirect('/');
+                 res.status(200).redirect('/me/stored/courses');
               } else {
                 //no cart for user, create new cart
                 const newCart = Cart.create({
@@ -128,8 +128,7 @@ class CoursesController {
                  res.status(200).redirect('/me/stored/courses');
               }
             } catch (err) {
-              console.log(err);
-              res.status(500).json("error : " + err);
+              res.status(500).json(err);
             }
           })
     }catch (e) {
