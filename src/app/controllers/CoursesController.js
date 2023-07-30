@@ -1,17 +1,27 @@
 const Course = require('../modle/Course');
 const until = require('../../until/Mongoose');
 const Cart= require("../modle/Cart")
+const SubCourse=require("../modle/SubCourse")
+const mongoose = require("mongoose");
 
 class CoursesController {
   // [GET} /courses/:slug
   async show(req, res) {
     try {
-      await Course.findOne({ slug: req.params.slug }).then(function (courses) {
-        courses = until.mongooseToObject(courses);
-        res.render('courses/show', { courses: courses });
+      await Course.findOne({ slug: req.params.slug }).then(async function (courses) {
+        let subCourse= await SubCourse.findOne({mainCourse:courses.name})
+          courses = until.mongooseToObject(courses);
+        if(subCourse) {
+          subCourse = until.mongooseToObject(subCourse)
+        }
+          res.render('courses/show', {
+            courses: courses,
+            subCourse: subCourse
+          });
       });
     } catch (e) {
-      res.status(400).json('error ' + req.params.slug);
+      console.log(e)
+      res.status(400).json({error:e});
     }
   }
 
@@ -97,7 +107,7 @@ class CoursesController {
             const addCourse = {
               name: course.name,
               vidId: course.vidId,
-              slug: course.slug
+              slug: course.slug,
             }
             const userId = req.cookies.userId
             try {
@@ -116,7 +126,7 @@ class CoursesController {
                   //product does not exist in cart, add new item
                   cart.products.push(addCourse);
                 }
-                cart = cart.save();
+                 cart.save();
                  res.status(200).redirect('/me/stored/courses');
               } else {
                 //no cart for user, create new cart
@@ -124,7 +134,6 @@ class CoursesController {
                   userId,
                   products: [addCourse]
                 });
-
                  res.status(200).redirect('/me/stored/courses');
               }
             } catch (err) {
@@ -136,7 +145,61 @@ class CoursesController {
     }
   }
 
+  //[GET] /courses/subcourse/form
+  async subcourseForm(req,res){
+    try {
+      res.render('courses/subCourseForm')
+    }catch (e) {
+      res.status(404).json(e)
+    }
+  }
 
+  //[POST] /courses/subcourse/store
+   async subStore(req,res) {
+      try {
+        await Course.findOne({name:req.body.name})
+            .then(async function(course){
+              const newSubCourse ={
+                name:req.body.subname,
+                description: req.body.description,
+                vidId: req.body.vidId,
+                slug: until.slugify(req.body.subname)
+              }
+              try{
+                let subCourse= await SubCourse.findOne({mainCourse: course.name})
+
+                if(subCourse){
+                  let itemIndex=subCourse.course.findIndex(function (course) {
+                    return course.name===newSubCourse.name
+                  })
+                  if(itemIndex>-1){
+                    res.json("already exist")
+                  }else {
+                    subCourse.course.push(newSubCourse);
+                  }
+                   subCourse.save()
+                  res.status(200).redirect('/courses')
+                }else{
+                  const newSubcourse = SubCourse.create({
+                    mainCourse: req.body.name,
+                    course: [newSubCourse]
+                  });
+                  res.json(newSubcourse)
+                }
+              }catch (e) {
+                console.log(e)
+                res.status(401).json(e)
+              }
+            })
+            .catch(function (e) {
+              console.log(e)
+              res.status(401).json({msg:e})
+            })
+
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
 }
 module.exports = new CoursesController();

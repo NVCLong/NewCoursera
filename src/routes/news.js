@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const newController = require('../app/controllers/NewController');
 const middlewareController = require('../app/controllers/MildewareController');
-const coursesController = require('../app/controllers/CoursesController');
+
 
 router.get('/tech', middlewareController.verifyToken, newController.tech);
 router.get('/job', middlewareController.verifyToken, newController.job);

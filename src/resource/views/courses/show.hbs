@@ -14,17 +14,17 @@
     </div>
     <div class="listgroup" >
         <h3>Relative Courses</h3>
-        {{#each courses.subCourse}}
+        {{#each subCourse.course}}
         <ul class="list-group" id="job-detail-danger">
-            <a href="#" class="list-group-item list-group-item-dark" data-toggle="modal" data-target="#video-modal-{{this.sub_slug}}">{{this.name}}</a>
+            <a href="#" class="list-group-item list-group-item-dark" data-toggle="modal" data-target="#video-modal-{{this._id}}">{{this.name}}</a>
         </ul>
         {{/each}}
     </div>
 </main>
 
 <!--Video modal-->
-{{#each courses.subCourse}}
-    <div class="modal fade bd-example-modal-lg" id="video-modal-{{this.sub_slug}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+{{#each subCourse.course}}
+    <div class="modal fade bd-example-modal-lg" id="video-modal-{{this._id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
