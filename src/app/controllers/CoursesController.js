@@ -184,7 +184,7 @@ class CoursesController {
                     mainCourse: req.body.name,
                     course: [newSubCourse]
                   });
-                  res.json(newSubcourse)
+                  res.status(200).redicrect('/courses')
                 }
               }catch (e) {
                 console.log(e)
@@ -200,6 +200,7 @@ class CoursesController {
         console.log(err);
       }
     }
+
 
 }
 module.exports = new CoursesController();

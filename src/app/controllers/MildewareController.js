@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const jwt_decode=require('jwt-decode')
 
 const middlewareController = {
   // verify
@@ -17,6 +18,20 @@ const middlewareController = {
       res.redirect('/authen');
     }
   },
+
+  adminVerify(req,res, next){
+    const adminData=req.cookies.accessToken
+    if(adminData){
+      const decoded=jwt_decode(adminData)
+      if(decoded.admin===true){
+        next()
+      }else {
+        res.redirect('/')
+      }
+    }else{
+      res.redirect('/authen')
+    }
+  }
 };
 
 // store token

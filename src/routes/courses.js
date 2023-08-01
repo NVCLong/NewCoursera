@@ -6,6 +6,7 @@ const { static } = require('express');
 
 router.get(
   '/create',
+  middlewareController.adminVerify,
   middlewareController.verifyToken,
   coursesController.create,
 );
@@ -27,7 +28,8 @@ router.delete(
   coursesController.delete,
 );
 router.get('/stored/:id',middlewareController.verifyToken,coursesController.addToCart)
-router.get('/subcourse/form',middlewareController.verifyToken, coursesController.subcourseForm)
+router.get('/subcourse/form',  middlewareController.adminVerify,
+    middlewareController.verifyToken, coursesController.subcourseForm)
 router.post('/subcourse/store', middlewareController.verifyToken, coursesController.subStore)
 router.get('/', middlewareController.verifyToken, coursesController.courses);
 
