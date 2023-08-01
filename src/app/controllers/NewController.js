@@ -3,7 +3,6 @@ const Jobs = require('../modle/Jobs');
 const until = require('../../until/Mongoose');
 
 class NewController {
-
   // [GET]  /news
   async tech(req, res) {
     try {
@@ -75,7 +74,6 @@ class NewController {
     }
   }
 
-
   // [PUT] /news/:id
   async save(req, res) {
     try {
@@ -90,7 +88,6 @@ class NewController {
       res.status(404).json(e);
     }
   }
-
 
   //[DELETE] /news/:id
   async delete(req, res) {
@@ -121,10 +118,5 @@ class NewController {
       res.status(401).json(e);
     }
   }
-
-
-
-
-
 }
 module.exports = new NewController();

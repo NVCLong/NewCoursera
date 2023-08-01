@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwt_decode=require('jwt-decode')
+const jwt_decode = require('jwt-decode');
 
 const middlewareController = {
   // verify
@@ -19,19 +19,19 @@ const middlewareController = {
     }
   },
 
-  adminVerify(req,res, next){
-    const adminData=req.cookies.accessToken
-    if(adminData){
-      const decoded=jwt_decode(adminData)
-      if(decoded.admin===true){
-        next()
-      }else {
-        res.redirect('/')
+  adminVerify(req, res, next) {
+    const adminData = req.cookies.accessToken;
+    if (adminData) {
+      const decoded = jwt_decode(adminData);
+      if (decoded.admin === true) {
+        next();
+      } else {
+        res.redirect('/');
       }
-    }else{
-      res.redirect('/authen')
+    } else {
+      res.redirect('/authen');
     }
-  }
+  },
 };
 
 // store token

@@ -5,10 +5,6 @@ mongoose.plugin(slug);
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-
-
-
-
 const Course = new mongoose.Schema(
   {
     name: { type: String, minLength: 1, maxLength: 100, require: true },
@@ -17,14 +13,14 @@ const Course = new mongoose.Schema(
     vidId: { type: String, minLength: 1, maxLength: 200 },
     userupload: { type: Boolean, default: false },
     slug: { type: String, maxLength: 200 },
-      active: {
-          type: Boolean,
-          default: true
-      },
-      modifiedOn: {
-          type: Date,
-          default: Date.now
-      }
+    active: {
+      type: Boolean,
+      default: true,
+    },
+    modifiedOn: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     timestamps: true,

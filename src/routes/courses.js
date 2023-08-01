@@ -27,10 +27,22 @@ router.delete(
   middlewareController.verifyToken,
   coursesController.delete,
 );
-router.get('/stored/:id',middlewareController.verifyToken,coursesController.addToCart)
-router.get('/subcourse/form',  middlewareController.adminVerify,
-    middlewareController.verifyToken, coursesController.subcourseForm)
-router.post('/subcourse/store', middlewareController.verifyToken, coursesController.subStore)
+router.get(
+  '/stored/:id',
+  middlewareController.verifyToken,
+  coursesController.addToCart,
+);
+router.get(
+  '/subcourse/form',
+  middlewareController.adminVerify,
+  middlewareController.verifyToken,
+  coursesController.subcourseForm,
+);
+router.post(
+  '/subcourse/store',
+  middlewareController.verifyToken,
+  coursesController.subStore,
+);
 router.get('/', middlewareController.verifyToken, coursesController.courses);
 
 module.exports = router;

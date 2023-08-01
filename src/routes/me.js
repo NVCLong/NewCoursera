@@ -10,5 +10,4 @@ router.get(
   meController.stored,
 );
 
-
 module.exports = router;
