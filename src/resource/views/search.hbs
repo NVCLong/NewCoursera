@@ -1,25 +1,25 @@
 
 
+
 <div class="mt-4">
-<form method="POST" action="">
-    <div class="form-group">
-        <label for="exampleInputEmail1">Search</label>
-        <label>
-            <input type="text" name="q" class="form-control"  placeholder="Enter your words">
-        </label>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <div class="row">
+        {{#each courses}}
+            <div class="col-sm-6 col-lg-4">
+                <div class="card card-course-item" >
+                    <a href="/courses/{{this.slug}}">
+                        <img src="{{this.image}}" class="card-img-top" alt="...">
+                    </a>
+                    <div class="card-body">
+                        <a href="/courses/{{this.slug}}">
+                            <h5 class="card-title">{{this.name}}</h5>
+                        </a>
+                        <p class="card-text">{{this.description}}</p>
+                        <a href="/courses/{{this.slug}}" class="btn btn-primary">Study Now !!!</a>
+                        <a href="/courses/stored/{{this._id}}" class="btn btn-primary">Add to your course</a>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
     </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Search</label>
-        <label>
-            <select  name="gender" class="form-control" >
-                <option value="">Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                </select>
-        </label>
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
 </div>
+

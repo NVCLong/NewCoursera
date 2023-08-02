@@ -15,8 +15,21 @@ class SiteController {
   }
   // [GET} /search
 
-  search(req, res) {
-    res.render('search');
+  async search(req, res) {
+    try{
+      Course.find({keyword: { $regex: req.body.name.toLowerCase() }})
+          .then(function (courses) {
+            // res.json({courses:courses})
+            res.render('search',{courses:until.multipleMongooseToObject(courses)})
+          })
+          .catch(function (reason) {
+            console.log(reason)
+            res.json({msg:"error"})
+          })
+    }catch(e){
+      console.log(e)
+      res.json({e:e})
+    }
   }
 }
 module.exports = new SiteController();
