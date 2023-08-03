@@ -42,6 +42,7 @@ class UserController {
         );
         //store userid to cookie
         res.cookie('userId', user.id);
+        res.cookie('admin',user.admin)
         // store refresh token into cookies
         res.cookie('refreshToken', refreshToken, {
           httpOnly: true,

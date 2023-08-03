@@ -16,7 +16,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     News
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="news-dropdown">
                     <a class="dropdown-item" href="/news/tech">Tech News</a>
                     <a class="dropdown-item" href="/news/job">Job News</a>
                     <div class="dropdown-divider"></div>
@@ -26,14 +26,8 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Your courses
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/courses/create"> New Course</a>
-                    <a class="dropdown-item" href="/courses/subcourse/form">Add Sub-Course</a>
-                    <a class="dropdown-item" href="/news/create">New Article</a>
-                    <a class="dropdown-item" href="/me/stored/courses">My courses</a>
-                    <a class="dropdown-item" href="/news/my_news">My news</a>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout"   >Log out</a>
-                    <div class="dropdown-divider"></div>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="course-dropdown">
+                    <a class="dropdown-item" href="/authen">Log in</a>
                 </div>
             </li>
         </ul>
@@ -72,4 +66,23 @@
         logoutForm.action='/authen/logout?_method=POST'
         logoutForm.submit()
     }
+    let test= document.cookie
+    let admin=test.split(';').map(function (cookie) {
+        return cookie.split('=')
+    })[1]
+    let dropdown= document.getElementById('course-dropdown')
+    if(admin[1]==='true'){
+        dropdown.innerHTML=`
+                    <a class="dropdown-item" href="/admin">Admin page</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout"   >Log out</a>
+                    <div class="dropdown-divider"></div>`
+    }else{
+        dropdown.innerHTML=''
+        dropdown.innerHTML=`
+                    <a class="dropdown-item" href="/me/stored/courses">My courses</a>
+                    <a class="dropdown-item" href="/news/my_news">My news</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout">Log out</a>
+                    <div class="dropdown-divider"></div>`
+    }
+
 </script>

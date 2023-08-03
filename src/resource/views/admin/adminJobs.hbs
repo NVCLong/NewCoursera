@@ -1,0 +1,69 @@
+<div class="mt-4" style="color: #f9f7f1" >
+    <h3>My news</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Created Time</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        {{#each jobs}}
+            <tbody>
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.salary}}</td>
+                <td>{{this.company}}</td>
+                <td>
+                    <a href="/news/{{this._id}}/edit" class="btn btn-link">Edit</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-news">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        {{/each}}
+    </table>
+</div>
+
+<!--Delete news -->
+<div class="modal fade" id="delete-news" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm delete</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you want to delete this news ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn-delete-news" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="post" id="deleteForm"></form>
+
+<script>
+    let newsId;
+    let deleteBtn=document.getElementById('btn-delete-news')
+    let deleteForm=document.getElementById('deleteForm')
+    document.addEventListener('DOMContentLoaded',function () {
+        $('#delete-news').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget) // Button that triggered the modal
+            newsId = button.data('id') // Extract info from data-* attributes
+        })
+    })
+
+    deleteBtn.onclick=function () {
+        deleteForm.action='/news/'+ newsId +'?_method=DELETE'
+        deleteForm.submit()
+    }
+
+</script>

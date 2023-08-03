@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <h2 class="nav-link" href="#">
+                            <span data-feather="home"></span>
+                            Dashboard <span class="sr-only">(current)</span>
+                        </h2>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <span data-feather="file"></span>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses/create">
+                            <span data-feather="shopping-cart"></span>
+                            Create new Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/courses/subcourse/form">
+                            <span data-feather="users"></span>
+                            Add Sub Courses
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/news/create">
+                            <span data-feather="bar-chart-2"></span>
+                            New Article
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <span data-feather="calendar"></span>
+                        This week
+                    </button>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-primary">Courses</strong>
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="/admin/courses">Course Data</a>
+                            </h3>
+                            <div class="mb-1 text-muted">Present Data</div>
+                            <p class="card-text mb-auto">This is total course data of Coursera and admin can modify and access all courses</p>
+                            <a href="/admin/courses">Access data</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px; border: 5px solid #555;" src="https://tse3.mm.bing.net/th?id=OIP.XDWLX-G_GNiWjWEung7V7wHaHa&pid=Api&P=0&w=300&h=300" data-holder-rendered="true" href="/admin/courses">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-success">Article</strong>
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="/admin/article">Article</a>
+                            </h3>
+                            <div class="mb-1 text-muted">Present Data</div>
+                            <p class="card-text mb-auto">This is total article about technology of Coursera.</p>
+                            <a href="/admin/article">Access Data</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px; border: 5px solid #555;" src="https://tse2.mm.bing.net/th?id=OIP.Q8BW1Yl3ddocpJ09z8N-MQHaHa&pid=Api&P=0&h=220" data-holder-rendered="true" href="/admin/article">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-success">Jobs</strong>
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="/admin/jobs">Jobs data</a>
+                            </h3>
+                            <div class="mb-1 text-muted">Present Data</div>
+                            <p class="card-text mb-auto">This is total jobs in Coursera.</p>
+                            <a href="/admin/jobs">Access Data</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px; border: 5px solid #555;" src="https://tse4.mm.bing.net/th?id=OIP.PhSoZSOKilXFjq36hSVclgHaHa&pid=Api&P=0&h=220" data-holder-rendered="true" href="/admin/jobs">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card flex-md-row mb-4 box-shadow h-md-250">
+                        <div class="card-body d-flex flex-column align-items-start">
+                            <strong class="d-inline-block mb-2 text-success">User</strong>
+                            <h3 class="mb-0">
+                                <a class="text-dark" href="/admin/users">User Data</a>
+                            </h3>
+                            <div class="mb-1 text-muted">Present Data</div>
+                            <p class="card-text mb-auto">This is total User data of Coursera.</p>
+                            <a href="/admin/users">Access Data</a>
+                        </div>
+                        <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px; border: 5px solid #555;" src="https://tse2.mm.bing.net/th?id=OIP.Pb8bdQKtMhUOWOICVgZwqgHaHa&pid=Api&P=0&h=220" data-holder-rendered="true" href="/admin/user">
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+</div>
