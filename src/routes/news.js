@@ -31,6 +31,7 @@ router.put(
   middlewareController.verifyToken,
   newController.jobStore,
 );
+router.delete('/jobs/:id',middlewareController.verifyToken, middlewareController.adminVerify, newController.deleteJob)
 router.get('/', middlewareController.verifyToken);
 
 module.exports = router;

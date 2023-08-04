@@ -151,5 +151,20 @@ class NewController {
       res.status(401).json({ e: e });
     }
   }
+
+  //[DELETE] /news/jobs/:id
+  async deleteJob(req, res){
+    try {
+      await Jobs.deleteOne({ _id: req.params.id })
+          .then(function () {
+            res.redirect('back');
+          })
+          .catch(function (e) {
+            res.status(401).json(e);
+          });
+    } catch (e) {
+      res.status(401).json(e);
+    }
+  }
 }
 module.exports = new NewController();
