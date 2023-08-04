@@ -21,6 +21,16 @@ router.get(
 router.delete('/:id', middlewareController.verifyToken, newController.delete);
 router.get('/:id/edit', middlewareController.verifyToken, newController.edit);
 router.put('/:id', middlewareController.verifyToken, newController.save);
+router.get(
+  '/:id/editJobs',
+  middlewareController.adminVerify,
+  newController.jobEdit,
+);
+router.put(
+  '/jobs/:id',
+  middlewareController.verifyToken,
+  newController.jobStore,
+);
 router.get('/', middlewareController.verifyToken);
 
 module.exports = router;

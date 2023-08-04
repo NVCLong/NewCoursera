@@ -1,0 +1,29 @@
+<div class="login-box">
+    <h2>Edit Jobs</h2>
+    <form method="post" action="/news/jobs/{{job._id}}?_method=PUT">
+        <div class="user-box">
+            <input type="text" name="name" value="{{job.name}}" required="">
+            <label>Name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="description" value="{{job.description}}" required="">
+            <label>Description</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="requirement" value="{{job.requirement}}" required="">
+            <label>Requirement</label>
+        </div>
+        <div class="user-box">
+            <input type="text" name="salary" value="{{job.salary}}" required="">
+            <label>Salary</label>
+        </div>
+
+        <button type="submit" >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Edit
+        </button>
+    </form>
+</div>

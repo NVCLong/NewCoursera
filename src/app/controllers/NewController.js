@@ -118,5 +118,38 @@ class NewController {
       res.status(401).json(e);
     }
   }
+
+  //[GET] /news/:id/editJob
+  async jobEdit(req, res) {
+    try {
+      await Jobs.findById(req.params.id)
+        .then(function (job) {
+          res.render('news/jobsEdit', { job: until.mongooseToObject(job) });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ msg: ' error' });
+    }
+  }
+
+  //[PUT] /news/jobs/:id
+  async jobStore(req, res) {
+    try {
+      await Jobs.updateOne({ _id: req.params.id }, req.body)
+        .then(function () {
+          res.redirect('/admin/jobs');
+        })
+        .catch(function (e) {
+          console.log(e);
+          res.json({ e: e });
+        });
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ e: e });
+    }
+  }
 }
 module.exports = new NewController();

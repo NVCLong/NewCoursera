@@ -89,16 +89,16 @@ class CoursesController {
   }
   async delete(req, res) {
     try {
-      const userProducts= await Cart.findOne({ userId: req.cookies.userId })
-      if(userProducts) {
-        userProducts.products.id(req.params.id).deleteOne()
-        userProducts.save()
-        res.redirect('back')
-      }else{
-        res.status(401).json({msg:"do not have any products"})
+      const userProducts = await Cart.findOne({ userId: req.cookies.userId });
+      if (userProducts) {
+        userProducts.products.id(req.params.id).deleteOne();
+        userProducts.save();
+        res.redirect('back');
+      } else {
+        res.status(401).json({ msg: 'do not have any products' });
       }
     } catch (e) {
-      console.log(e)
+      console.log(e);
       res.status(401).json(e);
     }
   }
