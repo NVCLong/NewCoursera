@@ -88,6 +88,9 @@ class UserController {
   async userLogout(req, res) {
     try {
       res.clearCookie('accessToken');
+      res.clearCookie('admin')
+      res.clearCookie('refreshToken')
+      res.clearCookie('userId')
       res.redirect('/');
     } catch (e) {
       res.json(e);

@@ -166,5 +166,19 @@ class NewController {
       res.status(401).json(e);
     }
   }
+
+  //[GET] /news/job/:slug/cv
+  async cvForm(req,res){
+    try{
+      await Jobs.findOne({slug:req.params.slug})
+          .then(function (job) {
+            res.render('news/cvForm',{job:until.mongooseToObject(job)})
+          })
+
+    }catch (e) {
+      console.log(e)
+      res.json(e)
+    }
+  }
 }
 module.exports = new NewController();
