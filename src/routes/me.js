@@ -9,5 +9,5 @@ router.get(
   midlewareController.verifyToken,
   meController.stored,
 );
-
+router.get('/cv', midlewareController.verifyToken,meController.myCv)
 module.exports = router;

@@ -203,7 +203,7 @@ class NewController {
           })
         }
         cv.save()
-        res.status(200).json({msg:" Store success"})
+        res.status(200).redirect('/me/cv')
       }else {
         const newCv= await Cv.create({
           userId: userId,
@@ -217,7 +217,7 @@ class NewController {
           information: req.body.information
 
         })
-        res.status(200).json({msg: " create success"})
+        res.status(200).redirect('/me/cv')
       }
 
 
