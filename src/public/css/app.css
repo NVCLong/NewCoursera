@@ -387,7 +387,7 @@ body {
   position: relative; }
 
 .login-box .user-box input {
-  width: 100%;
+  width: 70%;
   padding: 10px 0;
   font-size: 16px;
   color: #fff;
@@ -714,7 +714,7 @@ form {
   min-width: 25rem; }
   form .title {
     font-family: 'Pacifico', cursive;
-    color: #212529;
+    color: white;
     font-size: 2.5rem; }
   form .form-control {
     background-color: #f2f6f8;
@@ -741,7 +741,7 @@ form {
   form textarea {
     font-family: 'Quicksand', sans-serif;
     color: #212529;
-    font-size: 1.1rem; }
+    font-size: 1rem; }
   form .icon {
     color: #57565c;
     height: 1.3rem;

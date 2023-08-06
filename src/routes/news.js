@@ -33,6 +33,7 @@ router.put(
 );
 router.delete('/jobs/:id',middlewareController.verifyToken, middlewareController.adminVerify, newController.deleteJob)
 router.get('/job/:slug/cv',middlewareController.verifyToken, newController.cvForm)
+router.post('/job/:slug/apply', middlewareController.verifyToken,newController.apply)
 router.get('/', middlewareController.verifyToken);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const News = require('../modle/News');
 const Jobs = require('../modle/Jobs');
+const Cv= require('../modle/CV')
 const until = require('../../until/Mongoose');
 
 class NewController {
@@ -178,6 +179,51 @@ class NewController {
     }catch (e) {
       console.log(e)
       res.json(e)
+    }
+  }
+
+  //[POST] /news/job/:slug/apply
+  async apply(req,res){
+    try{
+      const currentJob = await  Jobs.findOne({name: req.body.company})
+      const userId = req.cookies.userId;
+
+      const cv= await Cv.findOne({userId:userId})
+
+      if(cv){
+        let itemIndex=cv.cv.findIndex(function (cv) {
+          return cv.company===req.body.company
+        })
+        if(itemIndex>-1){
+          res.json('already exist')
+        }else{
+          cv.cv.push({
+            company: currentJob.name,
+            salary: currentJob.salary
+          })
+        }
+        cv.save()
+        res.status(200).json({msg:" Store success"})
+      }else {
+        const newCv= await Cv.create({
+          userId: userId,
+          cv:[{
+            company: currentJob.name,
+            salary: currentJob.salary
+          }],
+          name: req.body.name,
+          email: req.body.email,
+          gender: req.body.gender,
+          information: req.body.information
+
+        })
+        res.status(200).json({msg: " create success"})
+      }
+
+
+    }catch (e) {
+      console.log(e)
+
     }
   }
 }

@@ -307,15 +307,21 @@
   -------------------------------------------------------------
   ------------------------------------------------------------>
 
-    <form>
+    <form method="post" action="/news/job/{{job.slug}}/apply">
         <h1 class="title text-center mb-4">Your Information</h1>
+        <div class="form-group position-relative">
+            <label for="formName" class="d-block">
+                <i class="icon" data-feather="user"></i>
+            </label>
+            <input type="text" name="company" id="formName" class="form-control form-control-lg thick" placeholder="Company" value="{{job.name}}">
+        </div>
 
         <!-- Name -->
         <div class="form-group position-relative">
             <label for="formName" class="d-block">
                 <i class="icon" data-feather="user"></i>
             </label>
-            <input type="text" id="formName" class="form-control form-control-lg thick" placeholder="Name">
+            <input type="text" name="name" id="formName" class="form-control form-control-lg thick" placeholder="Employee Name">
         </div>
 
         <!-- E-mail -->
@@ -323,20 +329,20 @@
             <label for="formEmail" class="d-block">
                 <i class="icon" data-feather="mail"></i>
             </label>
-            <input type="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
+            <input type="email" name="email" id="formEmail" class="form-control form-control-lg thick" placeholder="E-mail">
         </div>
 <!--        Gender-->
         <div class="form-group position-relative">
             <label for="formName" class="d-block">
                 <i class="icon" data-feather="user"></i>
             </label>
-            <input type="text" id="formGender" class="form-control form-control-lg thick" placeholder="Gender">
+            <input type="text" name="gender" id="formGender" class="form-control form-control-lg thick" placeholder="Gender">
         </div>
 <!--        -->
 
         <!-- Message -->
         <div class="form-group message">
-            <textarea id="formInfor" class="form-control form-control-lg" rows="7" placeholder="Additional Information"></textarea>
+            <textarea id="formInfor" name="information" class="form-control form-control-lg" rows="7" placeholder="Additional Information"></textarea>
         </div>
 
         <!-- Submit btn -->
