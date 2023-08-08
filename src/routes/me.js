@@ -10,4 +10,5 @@ router.get(
   meController.stored,
 );
 router.get('/cv', midlewareController.verifyToken,meController.myCv)
+router.get('/cv/:id',midlewareController.verifyToken,meController.editCv)
 module.exports = router;

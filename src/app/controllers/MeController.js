@@ -24,6 +24,27 @@ const MeController = {
           .catch(function (reason) {
               console.log(reason)
           })
+    },
+
+    //[GET] /me/cv/:id
+    async editCv(req,res){
+      try{
+          await Cv.findOne({userId: req.cookies.userId})
+              .then(function (cv) {
+                  res.render('me/editCv',{cv:until.mongooseToObject(cv)})
+              })
+              .catch(function(reason){
+                  console.log(reason)
+              })
+      }catch (e) {
+          console.log(e)
+          res.json({e:e})
+      }
     }
+
+
 };
+
+
+
 module.exports = MeController;

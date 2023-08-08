@@ -17,7 +17,7 @@
                     <td><a href="#" style="color: #f9f7f1">{{this.company}}</a></td>
                     <td>{{this.salary}}</td>
                     <td>
-                        <a href="/courses/{{this.slug}}" class="btn btn-link">Study</a>
+                        <a href="/me/cv/{{this._id}}" class="btn btn-link">Edit</a>
                         <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-course">Delete</a>
                     </td>
                 </tr>
@@ -69,7 +69,7 @@
 
     // when delete course btn clicked
     btndeletecourse.onclick=function () {
-        deleteForm.action='/courses/'+courseID +'?_method=DELETE'
+        deleteForm.action='/me/cv/'+courseID +'?_method=DELETE'
         deleteForm.submit()
 
     }
