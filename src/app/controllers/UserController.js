@@ -3,7 +3,10 @@ const until = require('../../until/Mongoose');
 const bcrypt = require('bcrypt');
 const { hash } = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const nodeMailer= require('nodemailer')
+const mailGen=require('mailgen')
 const ls = require('local-storage');
+const Mailgen = require("mailgen");
 
 class UserController {
   loginForm(req, res) {
@@ -84,6 +87,100 @@ class UserController {
       res.status(400).json('error' + e);
     }
   }
+
+  //[GET] /authen/mailForm
+  async mailForm(req,res){
+    try{
+      res.render('authentication/mailForm')
+
+    }catch (e) {
+      console.log(e)
+      res.status(401).json({msg:e})
+    }
+  }
+
+  //[POST] /authen/mailSend
+  async mailSend(req,res){
+    try{
+      const user=await User.findOne({email:req.body.email})
+      const transporter = nodeMailer.createTransport({
+        service:'gmail',
+        auth: {
+          user: "ngovucaolong9118.thd@gmail.com",
+          pass: "llmvfrwvjihgdylk"
+        }
+      });
+      const mailGenerator= new Mailgen({
+        theme:'default',
+        product:{
+          name: 'Coursera',
+          link: 'https://mailgen.js/'
+        }
+      })
+
+      let response={
+        body:{
+          name:"Get Coursera account's password",
+          intro:"Get your Password",
+          table:{
+            data:[
+              {
+                username: user.username,
+                email: user.email,
+                link: `<a href="http://localhost:3000/authen/resetpassword/${user.email}">Reset</a>`
+              }
+            ],
+            outro:"Click on this link to reset your password"
+          }
+        }
+      }
+      let mail= mailGenerator.generate(response)
+      await transporter.sendMail({
+        from: "foo@example.com",
+        to: user.email,
+        subject: "Reset password confirmation",
+        html: mail,
+      })
+          .then(function () {
+            res.status(201).json({msg:"send email success"})
+          })
+          .catch(function (reason) {
+            console.log(reason)
+            res.json({e: reason})
+          })
+
+
+    }catch (e) {
+      console.log(e)
+      res.status(401).json({msg:e})
+    }
+  }
+
+  //[GET] /authen/resetpassword/:email
+
+   resetPass(req,res){
+    User.findOne({email:req.params.email})
+        .then(function (user) {
+          res.render('authentication/passwordReset',{user:until.mongooseToObject(user)})
+        })
+  }
+
+  //[PUT] /authen/resetpassword/:id
+   async updatePassword(req,res){
+     const salt = bcrypt.genSaltSync(10);
+     const hash = bcrypt.hashSync(req.body.newPassword, salt);
+     console.log(req.params.id)
+    await User.updateOne({_id:req.params.id},{
+      password: hash
+    })
+        .then(function () {
+          res.redirect('/authen/')
+        })
+        .catch(function (reason) {
+          console.log(reason)
+          res.status(401).json({e:reason})
+        })
+   }
 
   async userLogout(req, res) {
     try {
