@@ -102,7 +102,7 @@ class UserController {
   //[POST] /authen/mailSend
   async mailSend(req,res){
     try{
-      const user=await User.findOne({email:req.body.email})
+      const user=await User.findOne({username:req.body.username})
       const transporter = nodeMailer.createTransport({
         service:'gmail',
         auth: {
@@ -127,7 +127,7 @@ class UserController {
               {
                 username: user.username,
                 email: user.email,
-                link: `<a href="http://localhost:3000/authen/resetpassword/${user.email}">Reset</a>`
+                link: `<a href="http://localhost:3000/authen/resetpassword/${user.username}">Reset</a>`
               }
             ],
             outro:"Click on this link to reset your password"
@@ -159,7 +159,7 @@ class UserController {
   //[GET] /authen/resetpassword/:email
 
    resetPass(req,res){
-    User.findOne({email:req.params.email})
+    User.findOne({username: req.params.username})
         .then(function (user) {
           res.render('authentication/passwordReset',{user:until.mongooseToObject(user)})
         })

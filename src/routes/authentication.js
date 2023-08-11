@@ -7,7 +7,7 @@ router.post('/login', usersController.login);
 router.get('/registerForm', usersController.registerForm);
 router.get('/mailForm', usersController.mailForm)
 router.post('/mailSend',usersController.mailSend)
-router.get('/resetpassword/:email',usersController.resetPass)
+router.get('/resetpassword/:username',usersController.resetPass)
 router.put('/resetpassword/:id',usersController.updatePassword)
 router.post('/logout', usersController.userLogout);
 router.get('/', usersController.loginForm);
