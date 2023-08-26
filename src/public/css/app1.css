@@ -41,3 +41,27 @@ html {
     display: inline-block;
     margin-right: 10px;
     text-decoration: underline; }
+
+.messageC {
+  position: fixed;
+  top: 35%;
+  left: 35%; }
+
+.message.notification {
+  margin-top: 30px;
+  display: flex;
+  background-color: grey;
+  align-items: center;
+  padding: 20px 0;
+  border-radius: 5px;
+  border-left: 1rem solid;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+  height: 100px;
+  width: 400px; }
+
+body > div {
+  margin: auto; }
+
+div > div {
+  margin: auto; }

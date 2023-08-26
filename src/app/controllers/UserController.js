@@ -106,8 +106,8 @@ class UserController {
       const transporter = nodeMailer.createTransport({
         service:'gmail',
         auth: {
-          user: "ngovucaolong9118.thd@gmail.com",
-          pass: "llmvfrwvjihgdylk"
+          user: "companycoursera@gmail.com",
+          pass: "kcyzdemrnetwbojs"
         }
       });
       const mailGenerator= new Mailgen({
@@ -127,7 +127,7 @@ class UserController {
               {
                 username: user.username,
                 email: user.email,
-                link: `<a href="http://localhost:3000/authen/resetpassword/${user.username}">Reset</a>`
+                link: `<a href="https://666a-2402-800-628f-5cda-cd-82a7-e8c6-a63c.ngrok-free.app/authen/resetpassword/${user.username}">Reset</a>`
               }
             ],
             outro:"Click on this link to reset your password"

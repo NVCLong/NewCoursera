@@ -144,7 +144,7 @@ class CoursesController {
         }
       });
     } catch (e) {
-      res.json(e);
+      console.log(e)
     }
   }
 
