@@ -1,0 +1,95 @@
+<div class="chatbox">
+<div class="container1">
+    <div class="row">
+        <section class="discussions">
+            <div class="discussion search">
+                <div class="searchbar">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Search..."></input>
+                </div>
+            </div>
+            <div class="discussion message-active">
+                <div class="photo" style="background-image: url(https://tse3.mm.bing.net/th?id=OIP.U1HMBTOP7R9VCjshZzLPsgHaHa&pid=Api&P=0&h=220);">
+                    <div class="online"></div>
+                </div>
+                <div class="desc-contact">
+                    <p class="name">Operation Team</p>
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </section>
+        <section class="chat">
+            <div class="header-chat">
+                <i class="icon fa fa-user-o" aria-hidden="true"></i>
+                <p class="name">Operation Team</p>
+            </div>
+            <div class="messages-chat">
+                <div class="message text-only">
+                    <p class="text"> Hi, how are you ? </p>
+                </div>
+                <div class="message text-only">
+                    <p class="text"> What are you doing tonight ? Want to go take a drink ?</p>
+                </div>
+
+                <div class="message text-only">
+                    <div class="response">
+                        <p class="text"> Hey Megan ! It's been a while 😃</p>
+                    </div>
+                </div>
+                <div class="message text-only">
+                    <div class="response">
+                        <p class="text"> When can we meet ?</p>
+                    </div>
+                </div>
+
+                <div class="message text-only">
+                    <p class="text"> 9 pm at the bar if possible 😳</p>
+                </div>
+
+            </div>
+            <div class="footer-chat">
+                <form class="chat-form">
+                <input type="text" class="write-message" placeholder="Type your message here">
+                    <button type="submit" class="message-submit">Send</button>
+                </form>
+            </div>
+
+        </section>
+    </div>
+</div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    const chatForm=document.querySelector('.chat-form')
+    const chatMessage=document.querySelector('.write-message')
+    const message=chatMessage.value
+    chatForm.onsubmit=(e)=>{
+        e.preventDefault()
+        socket.emit('on-chat',{
+            message: chatMessage.value
+        })
+        chatMessage.value=''
+
+    }
+    const messageChat=document.querySelector('.messages-chat')
+    socket.on('user-chat',(data)=>{
+        var chatItem = document.createElement("div");
+         chatItem.innerHTML=
+                `<div class="message text-only">
+                    <div class="response">
+                        <p class="text"> ${data.message}</p>
+                    </div>
+                </div>`
+        messageChat.appendChild(chatItem)
+        console.log("send done")
+    })
+
+</script>

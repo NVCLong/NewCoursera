@@ -8,6 +8,8 @@ const db = require('./config/db');
 var methodOverride = require('method-override');
 const app = express();
 const port = 3000;
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 db.connect().then(function () {
   console.log('Success');
@@ -46,6 +48,14 @@ app.use(methodOverride('_method'));
 
 route(app);
 
-app.listen(port, () => {
+// socket connection
+io.on('connection', client => {
+    console.log("Socket connection")
+    client.on('on-chat', data => {
+        io.emit('user-chat',data)
+    });
+    client.on('disconnect', () => { /* … */ });
+});
+server.listen(port, () => {
   console.log(` http://localhost:${port}/`);
 });
