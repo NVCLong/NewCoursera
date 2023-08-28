@@ -52,7 +52,8 @@ route(app);
 io.on('connection', client => {
     console.log("Socket connection")
     client.on('on-chat', data => {
-        io.emit('user-chat',data)
+        console.log(data.id)
+        client.broadcast.emit('user-chat',data)
     });
     client.on('disconnect', () => { /* … */ });
 });

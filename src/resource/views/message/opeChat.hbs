@@ -59,23 +59,34 @@
                     <button type="submit" class="message-submit">Send</button>
                 </form>
             </div>
-
         </section>
     </div>
 </div>
 </div>
 
-<script src="/socket.io/socket.io.js"></script>
+<script src="/socket.io/socket.io.js">  </script>
 <script>
     const socket = io();
     const chatForm=document.querySelector('.chat-form')
     const chatMessage=document.querySelector('.write-message')
     const message=chatMessage.value
+    socket.on('connect',()=>{
+        console.log(document.cookie)
+    })
     chatForm.onsubmit=(e)=>{
         e.preventDefault()
-        socket.emit('on-chat',{
-            message: chatMessage.value
-        })
+
+            socket.emit('on-chat',{
+                message: chatMessage.value
+            })
+        var chatItem = document.createElement("div");
+        chatItem.innerHTML=
+                `<div class="message text-only">
+                    <div class="response">
+                        <p class="text"> ${chatMessage.value}</p>
+                    </div>
+                </div>`
+        messageChat.appendChild(chatItem)
         chatMessage.value=''
 
     }
@@ -84,12 +95,14 @@
         var chatItem = document.createElement("div");
          chatItem.innerHTML=
                 `<div class="message text-only">
-                    <div class="response">
+
                         <p class="text"> ${data.message}</p>
-                    </div>
+
                 </div>`
         messageChat.appendChild(chatItem)
-        console.log("send done")
+
+        //Scroll down
+        messageChat.scrollTop=messageChat.scrollHeight
     })
 
 </script>

@@ -296,13 +296,16 @@ div >div{
 }
 
 .chat .messages-chat {
+  max-height: 450px;
   padding: 25px 35px;
+  overflow-y: scroll;
 }
 
 .chat .messages-chat .message {
   display:flex;
   align-items: center;
   margin-bottom: 8px;
+  overflow-wrap: break-word;
 }
 
 .chat .messages-chat .message .photo {
