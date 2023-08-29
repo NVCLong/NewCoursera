@@ -30,27 +30,7 @@
                 <p class="name">Operation Team</p>
             </div>
             <div class="messages-chat">
-                <div class="message text-only">
-                    <p class="text"> Hi, how are you ? </p>
-                </div>
-                <div class="message text-only">
-                    <p class="text"> What are you doing tonight ? Want to go take a drink ?</p>
-                </div>
-
-                <div class="message text-only">
-                    <div class="response">
-                        <p class="text"> Hey Megan ! It's been a while 😃</p>
-                    </div>
-                </div>
-                <div class="message text-only">
-                    <div class="response">
-                        <p class="text"> When can we meet ?</p>
-                    </div>
-                </div>
-
-                <div class="message text-only">
-                    <p class="text"> 9 pm at the bar if possible 😳</p>
-                </div>
+               
 
             </div>
             <div class="footer-chat">
@@ -66,20 +46,24 @@
 
 <script src="/socket.io/socket.io.js">  </script>
 <script>
-    const socket = io();
+    const client = io();
     const chatForm=document.querySelector('.chat-form')
     const chatMessage=document.querySelector('.write-message')
     const message=chatMessage.value
-    socket.on('connect',()=>{
-        console.log(document.cookie)
+    // join rooom
+    // client.join('operation')
+    client.on('connect',()=>{
+        console.log('connected')
     })
+    client.emit('join_room','operation')
     chatForm.onsubmit=(e)=>{
         e.preventDefault()
 
-            socket.emit('on-chat',{
-                message: chatMessage.value
+            client.emit('on-chat',{
+                room: 'operation',
+                message: chatMessage.value,
             })
-        var chatItem = document.createElement("div");
+        const chatItem = document.createElement("div");
         chatItem.innerHTML=
                 `<div class="message text-only">
                     <div class="response">
@@ -91,12 +75,12 @@
 
     }
     const messageChat=document.querySelector('.messages-chat')
-    socket.on('user-chat',(data)=>{
-        var chatItem = document.createElement("div");
-         chatItem.innerHTML=
+    client.on('user-chat',(data)=>{
+        const chatItem = document.createElement("div");
+        chatItem.innerHTML=
                 `<div class="message text-only">
 
-                        <p class="text"> ${data.message}</p>
+                        <p class="text"> ${data}</p>
 
                 </div>`
         messageChat.appendChild(chatItem)
