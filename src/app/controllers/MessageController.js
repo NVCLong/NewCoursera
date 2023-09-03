@@ -13,6 +13,11 @@ class MessageController{
     opeChat(req,res){
         res.render('message/opeChat')
     }
+    //[GET] /message/academic
+
+    acaChat(req,res){
+        res.render('message/academicChat')
+    }
 }
 
 

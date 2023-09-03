@@ -1,0 +1,92 @@
+<div class="chatbox">
+    <div class="container1">
+        <div class="row">
+            <section class="discussions">
+                <div class="discussion search">
+                    <div class="searchbar">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <input type="text" placeholder="Search..."></input>
+                    </div>
+                </div>
+                <div class="discussion message-active">
+                    <div class="photo" style="background-image: url(https://tse3.mm.bing.net/th?id=OIP.U1HMBTOP7R9VCjshZzLPsgHaHa&pid=Api&P=0&h=220);">
+                        <div class="online"></div>
+                    </div>
+                    <div class="desc-contact">
+                        <p class="name">Academic Team</p>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </section>
+            <section class="chat">
+                <div class="header-chat">
+                    <i class="icon fa fa-user-o" aria-hidden="true"></i>
+                    <p class="name">Academic Team</p>
+                </div>
+                <div class="messages-chat">
+
+
+                </div>
+                <div class="footer-chat">
+                    <form class="chat-form">
+                        <input type="text" class="write-message" placeholder="Type your message here">
+                        <button type="submit" class="message-submit">Send</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js">  </script>
+<script>
+    const client = io();
+    const chatForm=document.querySelector('.chat-form')
+    const chatMessage=document.querySelector('.write-message')
+    const message=chatMessage.value
+    // join rooom
+    // client.join('operation')
+    client.on('connect',()=>{
+        console.log('connected')
+    })
+    client.emit('join_room','academic')
+    chatForm.onsubmit=(e)=>{
+        e.preventDefault()
+
+        client.emit('on-chat',{
+            room: 'academic',
+            message: chatMessage.value,
+        })
+        const chatItem = document.createElement("div");
+        chatItem.innerHTML=
+                `<div class="message text-only">
+                    <div class="response">
+                        <p class="text"> ${chatMessage.value}</p>
+                    </div>
+                </div>`
+        messageChat.appendChild(chatItem)
+        chatMessage.value=''
+
+    }
+    const messageChat=document.querySelector('.messages-chat')
+    client.on('user-chat',(data)=>{
+        const chatItem = document.createElement("div");
+        chatItem.innerHTML=
+                `<div class="message text-only">
+
+                        <p class="text"> ${data}</p>
+
+                </div>`
+        messageChat.appendChild(chatItem)
+
+        //Scroll down
+        messageChat.scrollTop=messageChat.scrollHeight
+    })
+
+</script>
