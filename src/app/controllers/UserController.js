@@ -25,7 +25,7 @@ class UserController {
         user.password,
       );
       if (!validPassword) {
-        res.status(404).json('wrong password');
+        res.status(200).redirect('/authen');
       }
       if (user && validPassword) {
         const accessToken = jwt.sign(
