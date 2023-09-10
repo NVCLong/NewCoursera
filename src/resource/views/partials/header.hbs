@@ -73,24 +73,23 @@
     // for dev environment
     let admin=test.split(';').map(function (cookie) {
         return cookie.split('=')
-    })[1]
+    })[1][1]
+    console.log(admin)
 
     //for real time eploy
-    let admin1=test.split(';')[2].slice(7,11)
-    console.log(test.split(';')[2].slice(7,11))
+    let admin1=test.split(';')[2].slice(7,12)
+    console.log(test.split(';')[2].slice(7,12))
     console.log(test.split(';')[2])
     let dropdown= document.getElementById('course-dropdown')
-    if(admin1==='true'){
+    if(admin1 === 'true'){
+        dropdown.innerHTML=''
         dropdown.innerHTML=`
                     <a class="dropdown-item" href="/admin">Admin page</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout"   >Log out</a>
                     <div class="dropdown-divider"></div>`
     }else{
-        dropdown.innerHTML=''
         dropdown.innerHTML=`
-                    <a class="dropdown-item" href="/me/stored/courses">My courses</a>
-                    <a class="dropdown-item" href="/news/my_news">My news</a>
-                    <a class="dropdown-item" href="/me/cv">My Cv</a>
+                    <a class="dropdown-item" href="/me/profile">My Profile</a>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logout">Log out</a>
                     <div class="dropdown-divider"></div>`
     }

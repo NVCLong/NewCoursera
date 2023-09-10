@@ -9,6 +9,9 @@ router.get(
   midlewareController.verifyToken,
   meController.stored,
 );
-router.get('/cv', midlewareController.verifyToken,meController.myCv)
+router.get('/profile',midlewareController.verifyToken,meController.profile);
 router.get('/cv/:id',midlewareController.verifyToken,meController.editCv)
+router.post('/avatar/:id',midlewareController.verifyToken, meController.avatar)
+router.get('/cv', midlewareController.verifyToken,meController.myCv)
+
 module.exports = router;
