@@ -83,7 +83,8 @@ const MeController = {
                   image: {
                       data: req.file.filename,
                       contentType: 'image/png'
-                  }
+                  },
+                  name: req.body.filename
               })
               newAvatar.save()
                   .then(function(){
@@ -95,7 +96,6 @@ const MeController = {
           }
       })
     }
-
 };
 
 

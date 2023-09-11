@@ -61,7 +61,7 @@ class UserController {
         res.status(200).redirect('/');
       }
     } catch (e) {
-      res.status(400).json(e);
+     console.log(e)
     }
   }
 
