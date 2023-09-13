@@ -1,37 +1,38 @@
-# Coursera
-This is a small website developed by using Node.Js/ Express.Js ,HTML5, CSS3, and Boostrap5. This website support for learning purpose, and practicing Node.Js and Express.Js
+
+# New Coursera
+Coursera is a Web/app project for learning purposes. The project is a website where students can look up and learn about technology, and at the same time learn some basic programming languages through courses. video is attached. Coursera is also a project that helps creators get acquainted and practice with Nodejs and ExpressJs as well as some other libraries.
 
 
+## Features
++ Log in / Register
++ Reset password by Email
++ Add course to Cart
++ Search course
++ Watch Video in course detail pages
++ Read Tech news, and job news
++ Add and Edit new course and subcourse for Admin
++ Add new job news for Admin
++ Edit and add new jobs for Admin
++ Apply Cv for users
++ Edit Cv for users
++ Manage users course for users
++ Manage users Cv
++ Add and edit Tech news for Admin
++ Real time chat 
++ Edit profile for users
++ Get data for admin (courses, users,news, jobs,...)
 
 
 ## Authors
 
-- [NVCLong](https://www.github.com/NVCLong)
-
-
-
-
-
+- [@NVCLong]](https://github.com/NVCLong)
 
 
 ## Tech Stack
 
-**Client:** Boostrap5
+**Client:** HTML5, CSS3, Handlebars, Socket.io
 
-**Server:** Node, Express
-
-
-
-```
-
-
-## Running Tests
-
-To run tests, run the following command
-
-```bash
-  npm start
-```
+**Server:** Node, Express, Socket.io
 
 
 ## Run Locally
@@ -45,13 +46,13 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd NewCoursera
 ```
 
 Install dependencies
 
 ```bash
-  npm install  bcrypt cookie-parser express express-handlebars jsonwebtoken method-override mongoose morgan node-localstorage node-sass nodemon
+  npm install bcrypt cookie-parser cors express express-handlebars jsonwebtoken jwt-decode mailgen mongoose mongoose-slug-generator morgan node-sass nodemon nodemailer socket.io
 ```
 
 Start the server
@@ -59,5 +60,27 @@ Start the server
 ```bash
   npm start
 ```
+
+
+## 🛠 Skills
+Javascript, HTML, CSS, Nodejs, Expressjs, Socketio,....
+
+
+## Documentation
+
+[ExpressJs](https://expressjs.com/)
+[Handlebars](https://handlebarsjs.com/)
+[nodemailer](https://nodemailer.com/)
+[JWT](https://jwt.io/)
+[SocketIo](https://socket.io/)
+[mongoose](https://mongoosejs.com/)
+
+
+
+## Feedback
+
+If you have any feedback, please reach out to us at ngovucaolong9118.thd@gmail.com
+
+
 
 
