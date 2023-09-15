@@ -3,10 +3,10 @@ const until = require('../../until/Mongoose');
 const bcrypt = require('bcrypt');
 const { hash } = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const nodeMailer= require('nodemailer')
-const mailGen=require('mailgen')
+const nodeMailer = require('nodemailer');
+const mailGen = require('mailgen');
 const ls = require('local-storage');
-const Mailgen = require("mailgen");
+const Mailgen = require('mailgen');
 
 class UserController {
   loginForm(req, res) {
@@ -61,7 +61,7 @@ class UserController {
         res.status(200).redirect('/');
       }
     } catch (e) {
-     console.log(e)
+      console.log(e);
     }
   }
 
@@ -89,105 +89,107 @@ class UserController {
   }
 
   //[GET] /authen/mailForm
-  async mailForm(req,res){
-    try{
-      res.render('authentication/mailForm')
-
-    }catch (e) {
-      console.log(e)
-      res.status(401).json({msg:e})
+  async mailForm(req, res) {
+    try {
+      res.render('authentication/mailForm');
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ msg: e });
     }
   }
 
   //[POST] /authen/mailSend
-  async mailSend(req,res){
-    try{
-      const user=await User.findOne({username:req.body.username})
+  async mailSend(req, res) {
+    try {
+      const user = await User.findOne({ username: req.body.username });
       const transporter = nodeMailer.createTransport({
-        service:'gmail',
+        service: 'gmail',
         auth: {
-          user: "companycoursera@gmail.com",
-          pass: "kcyzdemrnetwbojs"
-        }
+          user: 'companycoursera@gmail.com',
+          pass: 'kcyzdemrnetwbojs',
+        },
       });
-      const mailGenerator= new Mailgen({
-        theme:'default',
-        product:{
+      const mailGenerator = new Mailgen({
+        theme: 'default',
+        product: {
           name: 'Coursera',
-          link: 'https://mailgen.js/'
-        }
-      })
+          link: 'https://mailgen.js/',
+        },
+      });
 
-      let response={
-        body:{
-          name:"Get Coursera account's password",
-          intro:"Get your Password",
-          table:{
-            data:[
+      let response = {
+        body: {
+          name: "Get Coursera account's password",
+          intro: 'Get your Password',
+          table: {
+            data: [
               {
                 username: user.username,
                 email: user.email,
-                link: `<a href="https://666a-2402-800-628f-5cda-cd-82a7-e8c6-a63c.ngrok-free.app/authen/resetpassword/${user.username}">Reset</a>`
-              }
+                link: `<a href="https://666a-2402-800-628f-5cda-cd-82a7-e8c6-a63c.ngrok-free.app/authen/resetpassword/${user.username}">Reset</a>`,
+              },
             ],
-            outro:"Click on this link to reset your password"
-          }
-        }
-      }
-      let mail= mailGenerator.generate(response)
-      await transporter.sendMail({
-        from: "foo@example.com",
-        to: user.email,
-        subject: "Reset password confirmation",
-        html: mail,
-      })
-          .then(function () {
-            res.status(201).json({msg:"send email success"})
-          })
-          .catch(function (reason) {
-            console.log(reason)
-            res.json({e: reason})
-          })
-
-
-    }catch (e) {
-      console.log(e)
-      res.status(401).json({msg:e})
+            outro: 'Click on this link to reset your password',
+          },
+        },
+      };
+      let mail = mailGenerator.generate(response);
+      await transporter
+        .sendMail({
+          from: 'foo@example.com',
+          to: user.email,
+          subject: 'Reset password confirmation',
+          html: mail,
+        })
+        .then(function () {
+          res.status(201).json({ msg: 'send email success' });
+        })
+        .catch(function (reason) {
+          console.log(reason);
+          res.json({ e: reason });
+        });
+    } catch (e) {
+      console.log(e);
+      res.status(401).json({ msg: e });
     }
   }
 
   //[GET] /authen/resetpassword/:email
 
-   resetPass(req,res){
-    User.findOne({username: req.params.username})
-        .then(function (user) {
-          res.render('authentication/passwordReset',{user:until.mongooseToObject(user)})
-        })
+  resetPass(req, res) {
+    User.findOne({ username: req.params.username }).then(function (user) {
+      res.render('authentication/passwordReset', {
+        user: until.mongooseToObject(user),
+      });
+    });
   }
 
   //[PUT] /authen/resetpassword/:id
-   async updatePassword(req,res){
-     const salt = bcrypt.genSaltSync(10);
-     const hash = bcrypt.hashSync(req.body.newPassword, salt);
-     console.log(req.params.id)
-    await User.updateOne({_id:req.params.id},{
-      password: hash
-    })
-        .then(function () {
-          res.redirect('/authen/')
-        })
-        .catch(function (reason) {
-          console.log(reason)
-          res.status(401).json({e:reason})
-        })
-   }
+  async updatePassword(req, res) {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.newPassword, salt);
+    console.log(req.params.id);
+    await User.updateOne(
+      { _id: req.params.id },
+      {
+        password: hash,
+      },
+    )
+      .then(function () {
+        res.redirect('/authen/');
+      })
+      .catch(function (reason) {
+        console.log(reason);
+        res.status(401).json({ e: reason });
+      });
+  }
 
   async userLogout(req, res) {
     try {
       res.clearCookie('accessToken');
-      res.clearCookie('admin')
-      res.clearCookie('refreshToken')
-      res.clearCookie('userId')
+      res.clearCookie('admin');
+      res.clearCookie('refreshToken');
+      res.clearCookie('userId');
       res.redirect('/');
     } catch (e) {
       res.json(e);

@@ -672,7 +672,12 @@ svg {
 #envelope {
   animation: float 2s ease-in-out infinite; }
 
-#star1, #star2, #star3, #star4, #star5, #star6 {
+#star1,
+#star2,
+#star3,
+#star4,
+#star5,
+#star6 {
   animation: blink 1s ease-in-out infinite; }
 
 #star2 {
@@ -702,7 +707,7 @@ svg {
   0% {
     opacity: 0; }
   50% {
-    opacity: .5; }
+    opacity: 0.5; }
   100% {
     opacity: 1; } }
 
@@ -722,13 +727,13 @@ form {
     box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.11); }
     form .form-control.thick {
       height: 3.3rem;
-      padding: .5rem 3.5rem; }
+      padding: 0.5rem 3.5rem; }
     form .form-control:focus {
       background-color: #f2f6f8;
       border: none;
       box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.11); }
   form .message .form-control {
-    padding: .5rem 1.8rem; }
+    padding: 0.5rem 1.8rem; }
   form ::placeholder {
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;

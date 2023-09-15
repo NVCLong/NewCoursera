@@ -69,7 +69,8 @@
   font-weight: bold;
   padding-top: 10px; }
 
-.url, hr {
+.url,
+hr {
   text-align: center; }
 
 .url hr {
@@ -84,7 +85,8 @@
   padding: 6px 8px;
   text-decoration: none; }
 
-.url a:hover, .url .active {
+.url a:hover,
+.url .active {
   background-color: white;
   border-radius: 28px;
   color: #000;
@@ -154,3 +156,10 @@
   color: #fffb01 !important; }
 
 /* End */
+/*Pagination*/
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+  bottom: 10%; }

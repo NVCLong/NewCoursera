@@ -1,6 +1,6 @@
 const News = require('../modle/News');
 const Jobs = require('../modle/Jobs');
-const Cv= require('../modle/CV')
+const Cv = require('../modle/CV');
 const until = require('../../until/Mongoose');
 
 class NewController {
@@ -154,76 +154,72 @@ class NewController {
   }
 
   //[DELETE] /news/jobs/:id
-  async deleteJob(req, res){
+  async deleteJob(req, res) {
     try {
       await Jobs.deleteOne({ _id: req.params.id })
-          .then(function () {
-            res.redirect('back');
-          })
-          .catch(function (e) {
-            res.status(401).json(e);
-          });
+        .then(function () {
+          res.redirect('back');
+        })
+        .catch(function (e) {
+          res.status(401).json(e);
+        });
     } catch (e) {
       res.status(401).json(e);
     }
   }
 
   //[GET] /news/job/:slug/cv
-  async cvForm(req,res){
-    try{
-      await Jobs.findOne({slug:req.params.slug})
-          .then(function (job) {
-            res.render('news/cvForm',{job:until.mongooseToObject(job)})
-          })
-
-    }catch (e) {
-      console.log(e)
-      res.json(e)
+  async cvForm(req, res) {
+    try {
+      await Jobs.findOne({ slug: req.params.slug }).then(function (job) {
+        res.render('news/cvForm', { job: until.mongooseToObject(job) });
+      });
+    } catch (e) {
+      console.log(e);
+      res.json(e);
     }
   }
 
   //[POST] /news/job/:slug/apply
-  async apply(req,res){
-    try{
-      const currentJob = await  Jobs.findOne({name: req.body.company})
+  async apply(req, res) {
+    try {
+      const currentJob = await Jobs.findOne({ name: req.body.company });
       const userId = req.cookies.userId;
 
-      const cv= await Cv.findOne({userId:userId})
+      const cv = await Cv.findOne({ userId: userId });
 
-      if(cv){
-        let itemIndex=cv.cv.findIndex(function (cv) {
-          return cv.company===req.body.company
-        })
-        if(itemIndex>-1){
-          res.json('already exist')
-        }else{
+      if (cv) {
+        let itemIndex = cv.cv.findIndex(function (cv) {
+          return cv.company === req.body.company;
+        });
+        if (itemIndex > -1) {
+          res.json('already exist');
+        } else {
           cv.cv.push({
             company: currentJob.name,
-            salary: currentJob.salary
-          })
+            salary: currentJob.salary,
+          });
         }
-        cv.save()
-        res.status(200).redirect('/me/cv')
-      }else {
-        const newCv= await Cv.create({
+        cv.save();
+        res.status(200).redirect('/me/cv');
+      } else {
+        const newCv = await Cv.create({
           userId: userId,
-          cv:[{
-            company: currentJob.name,
-            salary: currentJob.salary
-          }],
+          cv: [
+            {
+              company: currentJob.name,
+              salary: currentJob.salary,
+            },
+          ],
           name: req.body.name,
           email: req.body.email,
           gender: req.body.gender,
-          information: req.body.information
-
-        })
-        res.status(200).redirect('/me/cv')
+          information: req.body.information,
+        });
+        res.status(200).redirect('/me/cv');
       }
-
-
-    }catch (e) {
-      console.log(e)
-
+    } catch (e) {
+      console.log(e);
     }
   }
 }

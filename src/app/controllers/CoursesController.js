@@ -29,37 +29,38 @@ class CoursesController {
 
   //[GET] /courses
   async courses(req, res) {
-    let page= parseInt(req.query.page)
-    const limit = 3
-    const startIndex=(page - 1)*limit
-    const endIndex=(page)*limit
-    const result={
-    }
-
+    let page = parseInt(req.query.page);
+    const limit = 3;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const result = {};
 
     try {
-      const data = await Course.find().limit(limit).skip(startIndex).exec().then((courses) => {
-        if(endIndex<= courses.length){
-          result.next=page+1
-        }else if(endIndex>courses.length){
-          result.next= 1
-        }
-        else if(startIndex>0){
-          result.previous=page-1
-        }else if(startIndex===0){
-          result.previous=1
-        }
+      const data = await Course.find()
+        .limit(limit)
+        .skip(startIndex)
+        .exec()
+        .then((courses) => {
+          if (endIndex <= courses.length) {
+            result.next = page + 1;
+          } else if (endIndex > courses.length) {
+            result.next = 1;
+          }
 
-        console.log("type of this " +  typeof result.next)
-        console.log(result.next, result.previous)
-        res.render('courses', {
-          courses: until.multipleMongooseToObject(courses),
-          result: {previous: result.previous,
-          next: result.next},
+          if (startIndex > 0) {
+            result.previous = page - 1;
+          } else if (startIndex === 0) {
+            result.previous = 1;
+          }
+          console.log('type of this ' + typeof result.next);
+          console.log(result.next, result.previous);
+          res.render('courses', {
+            courses: until.multipleMongooseToObject(courses),
+            result: { previous: result.previous, next: result.next },
+          });
         });
-      });
     } catch (e) {
-      console.log(e)
+      console.log(e);
       res.status(400).json('error');
     }
   }
@@ -169,7 +170,7 @@ class CoursesController {
         }
       });
     } catch (e) {
-      console.log(e)
+      console.log(e);
     }
   }
 

@@ -49,18 +49,20 @@ app.use(methodOverride('_method'));
 route(app);
 
 // socket connection
-io.on('connection', server => {
-    console.log("Socket connection")
-    //join room for server
-   server.on('join_room',room =>{
-       server.join(room)
-   })
+io.on('connection', (server) => {
+  console.log('Socket connection');
+  //join room for server
+  server.on('join_room', (room) => {
+    server.join(room);
+  });
 
-    server.on('on-chat', (data) => {
-        server.broadcast.to(data.room).emit('user-chat',data.message)
-    });
+  server.on('on-chat', (data) => {
+    server.broadcast.to(data.room).emit('user-chat', data.message);
+  });
 
-    server.on('disconnect', () => { /* … */ });
+  server.on('disconnect', () => {
+    /* … */
+  });
 });
 server.listen(port, () => {
   console.log(` http://localhost:${port}/`);
