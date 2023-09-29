@@ -13,7 +13,7 @@ class MessageController {
   //[GET] /message/academic
 
   acaChat(req, res) {
-    res.render('message/acaChat');
+    res.render('message/academicChat');
   }
 }
 
